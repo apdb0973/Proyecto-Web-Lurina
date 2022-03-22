@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+
+
+                                                    
+    header{
+                                                    width: 100%;                                        //Maxima amplitud
+                                                    position: fixed;                                    //Se mantiene fijo en su posicion
+                                                    top:0px;                                            //Colocamos el contenido en la parte alta - izquierda de la pantalla
+                                                    left: 0px;
+                                        
+        .header__superior{                          
+                                                    max-width: 2000px;                                  //La amplitud del header superior es maximo de 1200 pixeles
+                                                    margin:auto;                                        //Centramos la caja
+                                                    display:flex;                                       //La convertimos en flex para distribuir
+                                                    align-items: center;                                // centramos los objetos verticalmente
+                                                    justify-content: space-between;                     //justificamos los objetos al borde exterior
+                                                    padding: 20px;                                      //Le añadimos un pequeño espaciado interior
+
+            .logo{                                                        
+                img{                    
+                                                    width:250px;
+                }
+            }
+        
+            .search{                                
+                input{                  
+                                                    width: 300px;                                       //aumentamos el ancho de la barra de busqueda
+                                                    padding: 10px;                                      //aumentamos el grosor de la barra de busqueda
+                }
+            }
+
+        }
+
+        .container__menu{
+                                                    width:100%;                                         //Establecemos la barra con todo el ancho de la pantalla
+                                                    height: 70px;                                       //Establecemos un grosor de la barra de 70px
+                                                    background: #023877;                              //Establecemos el color de la barra
+                                                    padding: 0px 20px;                                  //Establecemos 20px laterales para dejar espacio cuando se quede pequeña la pantalla
+            .menu{
+                                                    max-width: 2000px;                                  //alineamos el menu con  el header superior
+                                                    margin:auto;                                        //centramos el menu en la pantalla
+                                                    height: 100%;                                       //
+                nav{
+                                                    height: 100%;
+
+                    > ul{               
+                                                    height: 100%;
+                                                    display: flex;                                      //colocamos todos los "li" principales en posicion horizontal
+                                        
+                        >li{
+                                &:first-child{
+                                                >a{
+                                                    // background-image: url(casa.png);                    //Colocamos el icono de la casa
+                                                    background-size: 24px;                              //le damos un tamaño determinado
+                                                    background-repeat: no-repeat;                       //que sea solo uno, no se repita
+                                                    background-position: center center;                 //centrar el icono
+                                                }
+                                }
+
+                                &:first-child{                      
+                                    &:hover{                                                            //queremos que la imagen siga apareciendo cuando pase el raton
+                                        >a{
+                                                        // background-image: url(casa.png);                    
+                                                        background-size: 24px;
+                                                        background-repeat: no-repeat;
+                                                        background-position: center center;
+                                                        
+                                        }
+                                }
+                                }
+
+
+
+
+
+                            >a{                         justify-content: center;
+                                                        width: 150px;                                        
+                                                        padding: 0px;                                      //separamos el texto para ajustarlo a la pantalla
+                                                        height: 100%;
+                                                        display: flex;
+                                                        font-size: 14px;
+                                                        color: white;
+                                                        align-items: center;
+                                                        transition: all 300ms ease;
+                                &:hover{
+                                                        transform:scale(1.1) ;
+                                                        background: #0074c7;
+                                                        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+                                }
+                            }                             
+                        }                    
+                    }
+
+
+                    ul{                 
+                                                        margin: 0;                                          //Quitar el margin y el padding al menu y dejarlo plano
+                                                        padding: 0;                                         //----------------------------------------------------
+                        
+                        li{
+                                                        height: 100%;                                       //Ajustamos la altura del menu al de la barra
+                                                        list-style: none;                                   //quitamos los puntos al menu principal
+                                                        position: relative;                                 //punto de anclaje para los submenus
+
+                            &:hover ul{
+                                                        visibility: visible;
+                                                        opacity: 1;
+                                                        top: 70px;
+                            }
+
+                            a{                          
+                                                        text-decoration: none;                              //Quitamos el subbrayado del menu
+                            }                             
+                            
+                            ul{                                                                             //nivel de los submenus
+                                                        width:200px;                                        //Especificamos un ancho de 200px
+                                                        display: flex;                                      //lo hacemos flex
+                                                        flex-direction: column;                             //alineamos a column
+                                                        background-color: white;                          //fondo blanco de los submenus  
+                                                        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);     //le añadimos sombra al bloque de cada submenu
+                                                        position: absolute;                                 //para que se referencie
+                                                        top:90px;
+                                                        left:-5px;
+                                                        padding: 14px 0px;
+                                                         visibility: hidden;
+                                                         opacity: 0;
+                                                        z-index: 10;
+                                                        transition:all 300ms ease;
+                                
+                                &:before{
+                                                        content: '';
+                                                        width: 0px;
+                                                        height: 0px;
+                                                        border-left: 14px solid transparent;
+                                                        border-right: 14px solid transparent;
+                                                        border-bottom: 14px solid white;
+                                                        position: absolute;
+                                                        top: -12px;
+                                                        left: 20px;
+                                                        
+                                }
+
+                                li{
+                                    a{
+                                        
+                                        display: block;         //en vez de ser un texto inline, que sea un bloque
+                                        color:#0099e9;
+                                        padding:6px;
+                                        padding-left: 14px;
+                                        margin-top: 10px;
+                                        font-size: 14px;
+                                        text-transform: uppercase;
+                                        transition: all 300ms ease;
+
+                                        &:hover{
+                                            background: #0074c7;
+                                            color: #fff;
+                                            transform: scale(1.1);
+                                            padding-left: 30px;
+                                            font-size: 14px;
+                                            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                                                                                    
+                        }
+                    }
+                }
+            }
+        }
+
+    #selected{                                                                                              //Clase que utilizaremos para mantener activa la seleccion
+                                                        transform: scale(1.2);                              
+                                                        background-color: #0074C7;
+                                                        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    }
+
+    }
+
+
+
+
+@media (max-width:720px){
+
+    body{    
+        header{
+            .header__superior{
+                                                                padding: 10px;
+                                                                transition: all 300ms ease;                                          
+                .logo{  
+
+                    img{ 
+                                                                width:200px;
+                                                                transition: all 300ms ease;
+                    }
+                }
+                                                                
+                .search{ 
+
+                    input{
+                                                                display: none;                                                  
+                    }                                                   
+                }
+            }
+        
+            .container__menu{
+
+                .menu{
+                    nav{
+                        >ul{
+                            border: 1px solid red;
+                            flex-direction: column;
+                            background-color: #023877;
+                            position:fixed;
+                            left: 0;
+                            top: 158px;
+                            width:100%;
+                            height: 300px;
+                            transition: all 300ms ease;
+                            z-index: 100;
+                            *opacity: 0;
+                            *visibility: hidden;
+
+                        }
+                    }
+                    
+                    
+                    
+                    nav{
+                        ul{
+                            li{
+                                a{
+                                    &:hover{
+                                        transform: scale(1);
+                                    }
+                                }
+                                ul{
+                                    left:90px;
+                                }
+                                &:hover{
+                                    ul{
+                                        top:42px;
+                                    }
+                                }
+                                &:first-child{
+                                    a{
+                                        background-position: 20px;
+                                    }
+                                }
+                            
+                            }
+                        
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #selected{
+        transform: scle(1);
+    }
+}
+
+

@@ -23,9 +23,9 @@ export class CategoriaFormComponent implements OnInit {
   
   ngOnInit(): void {
 
-    if (this.route.snapshot.params['pocionid']) {
+    if (this.route.snapshot.params['categoriaid']) {
           this.modoCreacion=false;
-          this.IdCategoria = +this.route.snapshot.params['pocionid']
+          this.IdCategoria = +this.route.snapshot.params['categoriaid']
           this.servicioCategorias.obtenerCategoria(this.IdCategoria).subscribe
           
           (
@@ -68,7 +68,7 @@ export class CategoriaFormComponent implements OnInit {
         (datos:Categoria)=>{
                           console.log(datos);
                           this.success = true; 
-                          this.mensaje = "Se ha guardado una pocion con ID -> " + datos.id;
+                          this.mensaje = "Se ha guardado una categoria con ID -> " + datos.id;
                           this.categoria = new Categoria(); //limpiamos el objeto pocion del frontend despues de que se haya guardado
                         },
         

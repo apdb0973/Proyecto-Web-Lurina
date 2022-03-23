@@ -5,9 +5,10 @@
                                                     
     header{
                                                     width: 100%;                                        //Maxima amplitud
-                                                    position: fixed;                                    //Se mantiene fijo en su posicion
-                                                    top:0px;                                            //Colocamos el contenido en la parte alta - izquierda de la pantalla
-                                                    left: 0px;
+                                                    // position: fixed;                                    //Se mantiene fijo en su posicion
+                                                    // top:0px;                                            //Colocamos el contenido en la parte alta - izquierda de la pantalla
+                                                    // left: 0px;
+                                                    border: 2px solid red;
                                         
         .header__superior{                          
                                                     max-width: 2000px;                                  //La amplitud del header superior es maximo de 1200 pixeles

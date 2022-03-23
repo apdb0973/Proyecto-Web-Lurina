@@ -17,7 +17,7 @@ const routes: Routes = [
  { path:'admin/categorias/editar/:categoriaid',   component:  CategoriaFormComponent,     pathMatch:'full'},
  { path:'categorias_detail/:categoriaid',         component:  CategoriaDetailComponent,   pathMatch:'full'},
  { path:'admin/categorias-pag',                   component:  CategoriaPagComponent,      pathMatch:'full'},
- { path:'**',redirectTo:'',                                                             pathMatch:'full'}
+ { path:'**',redirectTo:'',                                                               pathMatch:'full'}
 
 ];
 

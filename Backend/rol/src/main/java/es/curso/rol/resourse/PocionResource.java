@@ -15,38 +15,38 @@ public class PocionResource{
         this.pocionService= pocionService;
     }
     @CrossOrigin()
-    @GetMapping("/pociones")
+    @GetMapping("/categorias")
     public List<PocionDTO> obtenerListaPociones() {
         List<PocionDTO> pociones = new ArrayList<PocionDTO>();
         pociones = pocionService.obtenerTodas();
         return pociones;
     }
     @CrossOrigin()
-    @GetMapping("/pociones-min")
+    @GetMapping("/categorias-min")
     public List<PocionDTOmin> obtenerListaPocionesmin() {
         List<PocionDTOmin> pociones = new ArrayList<PocionDTOmin>();
         pociones = pocionService.obtenerTodasmin();
         return pociones;
     }
     @CrossOrigin()
-    @PostMapping("/pociones")
+    @PostMapping("/categorias")
     public PocionDTO crearPocion(@RequestBody PocionDTO pocionDTO) {
 
         return pocionService.guardar(pocionDTO);
     }
     @CrossOrigin()
-    @PutMapping("/pociones")
+    @PutMapping("/categorias")
     public PocionDTO modificarPocion(@RequestBody PocionDTO pocionDTO) {
         return pocionService.guardar(pocionDTO);
 
     }
     @CrossOrigin()
-    @GetMapping("/pociones/{id}")
+    @GetMapping("/categorias/{id}")
     public PocionDTO obtenerPocion(@PathVariable Long id) {
         return pocionService.obtenerPocion(id);
     }
     @CrossOrigin()
-    @DeleteMapping("/pociones/{id}")
+    @DeleteMapping("/categorias/{id}")
     public void borrarPocion(@PathVariable Long id){
         pocionService.borrar(id);
 

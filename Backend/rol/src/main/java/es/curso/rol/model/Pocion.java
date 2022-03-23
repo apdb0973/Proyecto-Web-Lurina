@@ -21,7 +21,11 @@ public class Pocion {
     @Column(name = "urlimagen")
     private String urlimagen;
 
+    @Column(name = "t_categoria")
+    private String t_categoria;
 
+    @Column(name = "esEpica")
+    private Boolean esEpica;
 
     }
 

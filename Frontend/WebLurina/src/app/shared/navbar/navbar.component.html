@@ -43,14 +43,15 @@
 </div>
 -->
 <header>
+ 
   <div class="header__superior">
        <div class="logo">
            <img  src="../../../assets/imgs/Logo3.png" alt="">
        </div>
    
-       <div class="search">
+       <!-- <div class="search">
            <input type="search" placeholder="¿Que deseas buscar?">
-       </div>
+       </div> -->
    </div>
 
    <div>
@@ -91,16 +92,16 @@
        <div class="menu">
            <nav>
                <ul>
-                   <li><a href="#" id="selected"></a></li>
+                   <li><a href="#" id="selected">HOME</a></li>
                    <li><a href="#">BISUTERIA</a>
 
                        <ul>
                    
-                           <li><a href="#">Colgantes</a></li>
-                           <li><a href="#">Pendientes</a></li>
-                           <li><a href="#">Pulseras</a></li>
-                           <li><a href="#">Anillos</a></li>
-                           <li><a href="#">Tobilleras</a></li>
+                           <li><a [routerLink]="['/items', 'COLGANTES']">Colgantes</a></li>
+                           <li><a [routerLink]="['/items', 'PENDIENTES']">Pendientes</a></li>
+                           <li><a [routerLink]="['/items', 'PULSERAS']">Pulseras</a></li>
+                           <li><a [routerLink]="['/items', 'ANILLOS']">Anillos</a></li>
+                           <li><a [routerLink]="['/items', 'TOBILLERAS']">Tobilleras</a></li>
                            
                        </ul>
                    </li>
@@ -178,10 +179,9 @@
                     <ul>
                        
                         <li> <a routerLink="/admin/categorias" class="nav-link" >Categorias</a></li>
-                        <li><a href="">Items</a></li>
-                        <li><a href="">Usuarios</a></li>
-                        <a routerLink="/admin/pociones"></a>
-                       
+                        <li> <a routerLink="/admin/items" class="nav-link" >Items</a></li>
+                        <li> <a routerLink="/admin/usuarios" class="nav-link" >Usuarios</a></li>
+                      
                     </ul>
                 
                   </li>

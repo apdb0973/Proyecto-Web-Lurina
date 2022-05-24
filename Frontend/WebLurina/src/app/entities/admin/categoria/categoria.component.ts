@@ -1,7 +1,8 @@
 import { NONE_TYPE } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { CategoriaMinimal } from '../../categoria/categoria-minimal.model';
-import { CategoriaService } from '../../categoria/categoria.service';
+import { Categoria, tipo_de_categoria } from '../../categorias/categoria.model';
+import { CategoriaService } from '../../categorias/categoria.service';
+import { CategoriaFiltro } from '../../categorias/categoriaFiltro.model';
 
 @Component({
   selector: 'app-categorias',
@@ -10,7 +11,7 @@ import { CategoriaService } from '../../categoria/categoria.service';
 })
 export class CategoriaComponent implements OnInit {
 
-  categoriasMinimal: CategoriaMinimal[]=[];
+  categorias: Categoria[]=[];
 
   display = "none";
   categoriaAEliminar?:number = 0;
@@ -18,18 +19,42 @@ export class CategoriaComponent implements OnInit {
   success:boolean=false;
   mensaje:String="";
 
-  constructor(private categoriaService: CategoriaService) { }
+  page: number = 0;
+  size: number = 5;
+  sort: string = "titulo,asc";
+
+  first: boolean = false;
+  last: boolean = false;
+  totalPages: number = 0;
+  totalElements: number = 0;
+
+  filtros: CategoriaFiltro[] = [];
+  filtroTitulo: string = "";
+  
+
+
+  
+
+  constructor(private servicio_categorias: CategoriaService) { }
 
   ngOnInit(): void {
 
-    this.cargardatos();
+    this.cargardatos(this.page, this.size, this.sort);
   }
 
-  cargardatos(){
-    console.log('Cargando...');
-    this.categoriaService.obtenerCategoriasMinimal().subscribe(respuesta=>{ console.log('Fin de la carga'); this.categoriasMinimal=respuesta;});
-    
+  
+  cargardatos(page: number, size: number, sort: string) {
+
+    this.servicio_categorias.obtenerCategoriasPag(page, size, sort, this.filtros).subscribe((data: any) => {
+      this.categorias = data.content;
+      this.first = data.first;
+      this.last = data.last;
+      this.totalElements = data.totalElements;
+      this.totalPages = data.totalPages;
+    });
   }
+
+
   abrirModalEliminar(id?:number){
     console.log(id);
     this.display="block"
@@ -38,71 +63,51 @@ export class CategoriaComponent implements OnInit {
     this.success=false; //Refrescamos la pantalla eliminando cualquier mensaje residual
   }
 
-  eliminar(id?:number){
+  eliminar(Id?: number) {
+     this.servicio_categorias.eliminarCategoria(Id).subscribe(
+       (data: Categoria) => {
+         this.servicio_categorias.obtenerCategorias().subscribe((data: Categoria[]) => {
+           this.categorias = data;
+         });
+       }, 
+       (err) => {
+         this.mensaje = "Se produjo un error al borrar la categoria. Error: " + err;
+         this.error = true;
+     });
 
-    this.categoriaService.eliminarCategoria(id).subscribe                       // Ordeno al backend que elimine la Pocion
-    (
-       (respuest)=> 
-       {                                                       // Si la elimina correctamente, procedo a refrescar la pantalla
-         this.categoriaService.obtenerCategoriasMinimal().subscribe //Cargo la lista de nuevo para refrescar pantalla
-         (
-           respuesta=> 
-           {                                                   //Si la carga correctamente.....  
-            
-             this.categoriasMinimal=respuesta;                   //vuelco la lista en el array PocionesMinimal.
-             this.success=true;
-             console.log('Fin de la carga');
-           }
-         );
-         console.log(respuest)
-         this.error=false;
-         this.mensaje="El id se ha borrado correctamente"; //los 3 ultimos: reseteo las variables y cierro el modal.
-         this.cerrarModal();                  
-       },
-
-        (err)=>                                                   //Si no ha podido borrar la pocion.......
-        {
-          this.error = true;
-          this.success = false;
-          this.mensaje="Se produjo un error al borrar la categoria Error -> " + err.status;
-          this.cerrarModal();
-          console.log(err)         
-        }    
-    );
-     
   }
-// -------------------------------------------------------
-
-// (respuest)=> 
-//       {                                                       // Si la elimina correctamente, procedo a refrescar la pantalla
-//         this.pocionService.obtenerpocionesMinimal().subscribe //Cargo la lista de nuevo para refrescar pantalla
-//         (
-//           respuesta=> 
-//           {                                                   //Si la carga correctamente.....  
-            
-//             this.pocionesMinimal=respuesta;                   //vuelco la lista en el array PocionesMinimal.
-//             this.success=true;
-//             console.log('Fin de la carga');
-//           }
-//         );
-//         this.error=false;
-//         this.mensaje="El id se ha borrado correctamente"; //los 3 ultimos: reseteo las variables y cierro el modal.
-//         this.cerrarModal();                  
-//       },
-
-// (err)=>                                                   //Si no ha podido borrar la pocion.......
-//       {
-//         this.error = true;
-//         this.success = false;
-//         this.mensaje="Se produjo un error al borrar la poción Error -> " + err;
-//         this.cerrarModal();         
-//       }    
 
 
+  navegarAnterior() {
+    this.page = this.page - 1;
+    this.cargardatos(this.page, this.size, this.sort);
+  }
+
+  navegarSiguiente() {
+    this.page = this.page + 1;
+    this.cargardatos(this.page, this.size, this.sort);
+  }
 
 
+  buscar() {
+    this.montarFiltros();
+    this.cargardatos(this.page, this.size, this.sort);
+  }
 
+  montarFiltros() {
 
+    this.filtros = [];
+
+    if (this.filtroTitulo !== "") {
+      let filTitulo: CategoriaFiltro = new CategoriaFiltro();
+      filTitulo.key = "categoria";
+      filTitulo.value = this.filtroTitulo;
+      filTitulo.operation = "MATCH";
+      this.filtros.push(filTitulo);
+
+    }
+
+  }
 
 
 

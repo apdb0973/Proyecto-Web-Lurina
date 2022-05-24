@@ -1,0 +1,50 @@
+#precio_tachado{
+    color: gray;
+    text-decoration:line-through;
+    
+}
+
+#precio_rebajado{
+    color: red;
+    font-weight: bolder;
+    font-size: large;
+
+}
+
+#con_descuento{
+
+    display: inline-block;
+    background-color: red;
+
+}
+
+h5{
+
+    font-size: large;
+}
+
+.banderin_descuento{
+    display: flex;
+    background-color: red;
+    justify-content: center;
+    color: white;
+    width:20%;
+    position:absolute;
+    top: 80%;
+    left:0;
+}
+
+.referencia{
+
+    position:relative;
+
+}
+
+
+.icono {
+
+    position: absolute;
+    top:5%;
+    left:75%;
+       
+}

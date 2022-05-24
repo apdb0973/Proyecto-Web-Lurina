@@ -1,0 +1,78 @@
+<div class="container mt-3">
+    <h2 *ngIf="modoCreacion">Crear Item</h2>
+    <h2 *ngIf="!modoCreacion">Editar Item</h2>
+    
+    <div class="alert alert-success" role="alert" *ngIf="success">
+        {{mensaje}}
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="error">
+        {{mensaje}}
+    </div>
+
+
+    <form class="mt-1" name="itemForm" role="form" novalidate #editForm="ngForm" autocomplete="off">
+        <div class="mb-3 mt-3 form-group">
+            <label for="id" class="form-label">ID:</label>
+            <input type="text" class="form-control" readonly [(ngModel)]="item.id" name="id">
+        </div>
+        <div class="mb-3 mt-3 form-group">
+            <label for="categoria" class="form-label">Categoria</label>
+            <input type="text" class="form-control" [(ngModel)]="item.categoria" name="categoria" required maxlength="100">
+        </div>
+        
+        <div class="mb-3 mt-3 form-group">
+            <label for="articulo" class="form-label">Articulo</label>
+            <input type="text" class="form-control" [(ngModel)]="item.articulo" name="articulo">
+        </div>
+        <div class="mb-3 mt-3 form-group">
+            <label for="descripcion" class="form-label">Descripcion</label>
+            <input type="text" class="form-control"  [(ngModel)]="item.descripcion" name="descripcion">
+        </div>
+        <div class="mb-3 mt-3 form-group">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="text" class="form-control" [(ngModel)]="item.precio" name="precio" required maxlength="100">
+        </div>
+        <div class="mb-3 mt-3 form-group">
+            <label for="unidades" class="form-label">Unidades</label>
+            <input type="text" class="form-control" [(ngModel)]="item.unidades" name="unidades">
+        </div>
+        <div class="mb-3 mt-3 form-group">
+            <label for="rebajado" class="form-label">Rebajado</label>
+            <input type="text" class="form-control" [(ngModel)]="item.rebajado" name="rebajado">
+        </div>
+        <div class="mb-3 mt-3 form-group">
+            <label for="favorito" >Favorito</label>
+            <input type="checkbox" class="form-check-input" id="favorito" [(ngModel)]="item.favorito" name="favorito">
+        </div>
+        
+
+
+
+        <!--
+        <div class="mb-3 mt-3 form-group">
+            <label for="imagen" class="form-label">imagen</label>
+            <input type="text" class="form-control" [(ngModel)]="item.imagen" name="imagen">
+        </div>
+        -->
+        <div class="form-group">
+            <label for="imagen">Imagen</label>
+            <img *ngIf="existeImagen()" class="itemImage" src="{{item.imagenTipo}},{{item.imagen}}" />
+            <input type="file" accept=".png,.gif" class="form-control" id="imagen" (change)="incluirImagenEnObjeto($event)" name="imagen">
+        </div>
+
+
+
+
+    </form>
+    
+    <div class="d-flex justify-content-between">
+        <a routerLink="/admin/items">
+            <button class="btn btn-secondary">Volver</button>
+        </a>
+        <button [disabled]="editForm.form.invalid" class="btn btn-primary"(click)="Guardar()">Guardar</button>
+    </div>
+
+
+
+
+</div>

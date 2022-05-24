@@ -1,0 +1,91 @@
+<div class="container-fluid border mt-3">
+    <h2>Listado de Usuarios</h2>
+
+
+    <div class="d-flex alert alert-success justify-content-center" role="alert" *ngIf="success">
+        {{mensaje}}
+    </div>
+
+    <div class="alert alert-danger" role="alert" *ngIf="error">
+        {{mensaje}}
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <a routerLink="/admin/usuarios/nueva">
+        <button class="btn btn-primary">Nueva Categoria</button>
+        </a>
+    </div>
+
+    <div class="mt-3 d-flex alert alert-warning justify-content-center" role="alert" *ngIf="!usuarios || usuarios.length <= 0">
+      No hay Usuarios disponibles
+  </div>
+
+
+
+    <!-- --------------------------------------------------------------------------------- -->
+    <table class="table table-striped" *ngIf="usuarios && usuarios.length > 0"> <!-- Si usuarios minimal existe y su longitud es mayor que 0 -->
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th class="border">Correo Electronico</th>
+                <th>Tratamiento</th>
+                <th>Nombre</th>          
+                <th>Contraseña</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Calle</th>
+                <th>Numero</th>
+                <th>Codigo Postal</th>
+                <th>Localidad</th>
+                <th>Pais</th>          
+                <th>Direccion de entrega diferente</th>
+                <th>Declaracion proteccion de datos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of usuarios">
+                <td>{{p.id}}</td>
+                <td>{{p.correoElectronico}}</td>
+                <td>{{p.tratamiento}}</td>
+                <td>{{p.nombre}}</td>
+                <td>{{p.contrasena}}</td>
+                <td>{{p.fechaDeNacimiento}}</td>
+                <td>{{p.calle}}</td>
+                <td>{{p.numero}}</td>
+                <td>{{p.codigoPostal}}</td>
+                <td>{{p.localidad}}</td>
+                <td>{{p.pais}}</td>
+                <td [innerHTML]="p.direccionDeEntregaDiferente | backCheck"></td>
+                <td [innerHTML]="p.declaracionProteccionDeDatos | backCheck"></td>
+              
+                
+                    <a [routerLink]="['/admin/usuarios/editar',p.id]">
+                        <button class="btn btn-secondary">Editar</button>
+                    </a>
+
+                    <button class="m-1 btn btn-danger" (click)="abrirModalEliminar(p.id)" >Eliminar</button>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Modal -->
+
+<div class="modal" id="exampleModal" [ngStyle]="{'display': display}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmacion de borrado</h5>
+          <button type="button" class="close" (click)="cerrarModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ¿Estas Seguro que deseas eliminar el usuario {{usuarioAEliminar}}?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"(click)="cerrarModal()" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary"(click)="eliminar(usuarioAEliminar)">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>

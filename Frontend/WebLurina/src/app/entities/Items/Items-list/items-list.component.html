@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid ">
+        <div class="row " >
+            
+            
+            <div class="col-2   m-2 ms-5" *ngFor="let Item of Items_filtrados">
+                
+                <div class="row " >
+            
+                    <div class="col p-0 text-center shadow referencia">
+                        
+                        <img [routerLink]="['/items_detail', Item.id]" src="{{Item.imagenTipo}},{{Item.imagen}}" width="100%" alt="">
+                        <div class="banderin_descuento" *ngIf="Item.rebajado != 0" >{{Item.rebajado}}%</div>
+                         
+                        <a (click)="cambiar_favorito(Item)" class="icono" [innerHTML]="Item.favorito | Pipe"></a>
+
+                    </div>
+                    
+                </div>
+                <!------------------------------------------------------------------------>
+                <div class="row " >
+                    
+                    <div *ngIf="Item.rebajado != 0; then con_descuento; else sin_descuento"></div>
+             
+                    <ng-template #con_descuento >
+
+                        <div class="container">
+                            
+                            <div class="row">
+                                <div class="col p-0 mt-3 text-center text-wrap">
+                                    <h5>{{Item.descripcion}}</h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col text-end ">  
+                                   <span id="precio_tachado">{{Item.precio | currency:'EUR'}}</span> 
+                                </div>
+                                <div class="col ">
+
+                                 
+                                   <span *ngIf="Item.precio && Item.rebajado"   id="precio_rebajado">{{(Item.precio-(-(Item.precio/100)*Item.rebajado)) | currency:'EUR'}}</span>
+                           
+                                  
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                    </ng-template>
+                    
+                    <ng-template #sin_descuento class="col mt-3 text-center text-wrap">
+
+                        
+                        <div class="container">
+                            
+                            <div class="row">
+                                <div class="col mt-3 text-center text-wrap">
+                                    <h5>{{Item.descripcion}}</h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col text-center ">  
+                                   <h5>{{Item.precio | currency:'EUR'}}</h5> 
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </ng-template>
+                    
+                </div>
+
+                <!------------------------------------------------------------------------>
+
+            </div>
+        
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

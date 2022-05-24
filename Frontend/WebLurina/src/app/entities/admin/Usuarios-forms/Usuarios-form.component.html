@@ -1,0 +1,125 @@
+<div class="container mt-3">
+    <h2 *ngIf="modoCreacion">Crear Usuario</h2>
+    <h2 *ngIf="!modoCreacion">Editar Usuario</h2>
+    
+    <div class="alert alert-success" role="alert" *ngIf="success">
+        {{mensaje}}
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="error">
+        {{mensaje}}
+    </div>
+
+
+    <form class="mt-1" name="usuarioForm" role="form" novalidate #editForm="ngForm" autocomplete="off">
+        <div class="mb-3 mt-3 form-group">
+            <label for="id" class="form-label">ID:</label>
+            <input type="text" class="form-control" readonly [(ngModel)]="usuario.id" name="id">
+        </div>
+
+        <div class="mb-3 mt-3 form-group">
+            <label for="correoElectronico" class="form-label">Correo Electronico:</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.correoElectronico" name="correoElectronico" required maxlength="100">
+        </div>
+        
+        <div class="mb-3 mt-3 form-group">
+            <label for="tratamiento" class="form-label">Tratamiento</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.tratamiento" name="tratamiento">
+        </div>
+
+        <div class="mb-3 mt-3 form-group">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.nombre" name="nombre">
+        </div>
+
+        <div class="mb-3 mt-3 form-group">
+            <label for="contrasena" class="form-label">Contraseña</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.contrasena" name="contrasena">
+        </div>
+
+        <div class="mb-3 mt-3 form-group">
+            <label for="fechaDeNacimiento" class="form-label">Fecha De Nacimiento</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.fechaDeNacimiento" name="fechaDeNacimiento">
+        </div>
+
+        <div class="mb-3 mt-3 form-group">
+            <label for="calle" class="form-label">Calle</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.calle" name="calle">
+        </div>
+       
+        <div class="mb-3 mt-3 form-group">
+            <label for="numero" class="form-label">Numero:</label>
+            <input type="text" class="form-control"  [(ngModel)]="usuario.numero" name="numero">
+        </div>
+        <div class="mb-3 mt-3 form-group">
+            <label for="codigoPostal" class="form-label">Codigo Postal:</label>
+            <input type="text" class="form-control"  [(ngModel)]="usuario.codigoPostal" name="codigoPostal">
+        </div>
+
+        <div class="mb-3 mt-3 form-group">
+            <label for="localidad" class="form-label">Localidad</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.localidad" name="localidad" required maxlength="100">
+        </div>
+        
+        <div class="mb-3 mt-3 form-group">
+            <label for="pais" class="form-label">Pais</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.pais" name="pais">
+        </div>
+
+        <div class="mb-3 mt-3 form-group">
+            <label for="direccionDeEntregaDiferente">Direccion De Entrega Diferente</label>
+            <input type="checkbox" class="form-check-input" id="direccionDeEntregaDiferente" [(ngModel)]="usuario.direccionDeEntregaDiferente" name="direccionDeEntregaDiferente">
+        </div>
+                    
+        <div class="mb-3 mt-3 form-group">
+            <label for="nombre2" class="form-label">Nombre Alternativo</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.nombre2" name="nombre2">
+        </div>
+
+        <div class="mb-3 mt-3 form-group">
+            <label for="apellidos2" class="form-label">apellidos Alternativo</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.apellidos2" name="apellidos2">
+        </div>
+        
+        <div class="mb-3 mt-3 form-group">
+            <label for="calle2" class="form-label">Calle Alternativa</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.calle2" name="calle2">
+        </div>
+
+        <div class="mb-3 mt-3 form-group">
+            <label for="numero2" class="form-label">Numero Alternativo</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.numero2" name="numero2">
+        </div>
+
+        <div class="mb-3 mt-3 form-group">
+            <label for="codigoostal2" class="form-label">Codigoostal</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.codigoostal2" name="codigoostal2">
+        </div>
+
+        <div class="mb-3 mt-3 form-group">
+            <label for="localidad2" class="form-label">Localidad Alternativa</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.localidad2" name="localidad2">
+        </div>
+
+        <div class="mb-3 mt-3 form-group">
+            <label for="pais2" class="form-label">Pais Alternativo</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.pais2" name="pais2">
+        </div>
+
+        <div class="mb-3 mt-3 form-group">
+            <label for="declaracionProteccionDeDatos">Declaracion Proteccion De Datos</label>
+            <input type="checkbox" class="form-check-input" id="declaracionProteccionDeDatos" [(ngModel)]="usuario.declaracionProteccionDeDatos" name="declaracionProteccionDeDatos">
+        </div>
+
+
+    </form>
+    <div class="d-flex justify-content-between">
+        <a routerLink="/admin/usuarios">
+            <button class="btn btn-secondary">Volver</button>
+        </a>
+        <button [disabled]="editForm.form.invalid" class="btn btn-primary"(click)="Guardar()">Guardar</button>
+    </div>
+
+
+
+
+</div>

@@ -1,3 +1,46 @@
 .modal {
     background: rgba(0,0,0,0.5);
 }
+.itemImage {
+    width: 30px;
+    height: 30px;
+}
+.botoneraPaginacion {
+    width: 50%;
+    margin: 20px auto;
+}
+.containerFiltros {
+    width: 100%;
+    margin: 0 auto;
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.containerFiltros h1 {
+    font-size: 14pt;
+    background: black;
+    color: white;
+    width: 200px;
+    padding-left: 20px;
+    border-radius: 8px;
+    margin-top: -33px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#btnBuscar {
+    margin-top: 25px;
+}
+
+table {
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+.Acciones{
+    text-align: center;
+}
+

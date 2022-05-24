@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="container rounded-3">    
+    <div class="row categoriaCard border border-success mb-2 p-2 rounded-3" *ngFor="let Usuario of Usuariosfiltrado">
+                        
+       
+           <div class="container border" style="display:flex"> 
+                
+                  
+            
+                <div class="col-5 border  ">
+                    <p>     Usuario     {{Usuario.id}}</p>
+                    <span>              {{Usuario.correoElectronico | titlecase}}</span>
+                    <p>                 {{Usuario.nombre}}</p>
+                    <p>                 {{Usuario.fechaDeNacimiento}}</p>
+                    <p>                 {{Usuario.calle}}</p>
+                    <p>                 {{Usuario.numero}}</p>
+                    <p>                 {{Usuario.codigoPostal}}</p>
+                    <p>                 {{Usuario.localidad}}</p>
+                    <p>                 {{Usuario.pais}}</p>
+                    <p>                 {{Usuario.direccionDeEntregaDiferente}}</p>
+                    <p>                 {{Usuario.declaracionProteccionDeDatos}}</p>
+                    <p>                 {{Usuario.nombre2}}</p>
+                    <p>                 {{Usuario.apellidos2}}</p>
+                    <p>                 {{Usuario.calle2}}</p>
+                    <p>                 {{Usuario.numero2}}</p>
+                    <p>                 {{Usuario.codigoostal2}}</p>
+                    <p>                 {{Usuario.localidad2}}</p>
+                    <p>                 {{Usuario.pais2}}</p>
+                </div>    
+                
+                                
+            </div>
+    
+     
+    </div>
+</div>
+
+{{IdUsuario}}
+</body>
+</html>

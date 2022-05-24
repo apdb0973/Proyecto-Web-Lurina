@@ -16,23 +16,22 @@
             <input type="text" class="form-control" readonly [(ngModel)]="categoria.id" name="id">
         </div>
         <div class="mb-3 mt-3 form-group">
-            <label for="id" class="form-label">Nombre:</label>
-            <input type="text" class="form-control" [(ngModel)]="categoria.nombre" name="nombre" required maxlength="100">
+            <label for="titulo" class="form-label">Titulo:</label>
+            <input type="text" class="form-control" [(ngModel)]="categoria.titulo" name="titulo"  maxlength="100" required >
         </div>
-        <!-- <div [hidden]="!(editForm.controls.nombre?.dirty && editForm.controls.nombre?.invalid)">
-            <small class="form-text text-danger" [hidden]="!editForm.controls.nombre?.errors?.required">Este campo es requerido</small>
-        </div> -->
-
+        
         <div class="mb-3 mt-3 form-group">
-            <label for="id" class="form-label">Descripcion:</label>
-            <input type="text" class="form-control" [(ngModel)]="categoria.descripcion" name="descripcion">
+            <label for="categoria" class="form-label">Categoria</label>
+            <input type="text" class="form-control" [(ngModel)]="categoria.categoria" name="categoria" maxlength="100" required>
         </div>
 
-        <div class="form-check mb-3 form-group">
-            <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" [(ngModel)]="categoria.esEpica" name="esEpica"> Es épica
-            </label>
+        <div class="form-group">
+            <label for="imagen">Imagen</label>
+            <img *ngIf="existeImagen()" class="itemImage" src="{{categoria.imagenTipo}},{{categoria.imagen}}" />
+            <input type="file" accept=".png,.gif" class="form-control" id="imagen" (change)="incluirImagenEnObjeto($event)" name="imagen">
         </div>
+
+        
     </form>
     <div class="d-flex justify-content-between">
         <a routerLink="/admin/categorias">
